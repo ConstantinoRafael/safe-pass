@@ -1,9 +1,9 @@
 import express, { json, Request, Response } from "express";
 import { authenticationRouter } from "./routers/authentication-router";
-import { usersRouter } from "./routers/users-touter";
+import { usersRouter } from "./routers/users-router";
 
 const app = express();
-app.use(json()); 
+app.use(json());
 
 app.get("/health", (req: Request, res: Response) => res.send("I am alive!"));
 app.use("/users", usersRouter);
