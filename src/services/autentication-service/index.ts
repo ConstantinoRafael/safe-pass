@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { exclude } from "../../utils/prisma-util";
 import { invalidCredentialsError } from "./errors";
+import sessionRepository from "../../repositories/session-repository";
 
 async function signIn(params: SignInParams): Promise<SignInResult> {
   const { email, password } = params;
@@ -32,7 +33,7 @@ async function getUserOrFail(email: string): Promise<GetUserOrFailResult> {
 }
 
 async function createSession(userId: number) {
-  const token = jwt.sign({ userId }, process.env.JWT_SECRET);
+  const token = jwt.sign({ userId }, `${process.env.JWT_SECRET}`);
   await sessionRepository.create({
     token,
     userId,

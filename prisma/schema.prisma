@@ -17,8 +17,18 @@ model User {
 
   Credential Credential[]
   Network    Network[]
+  Session    Session[]
 
   @@map("users")
+}
+
+model Session {
+  id     Int    @id @default(autoincrement())
+  userId Int
+  user   User   @relation(fields: [userId], references: [id])
+  token  String
+
+  @@map("sessions")
 }
 
 model Credential {

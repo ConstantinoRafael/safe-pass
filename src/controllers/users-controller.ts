@@ -5,8 +5,6 @@ import userService from "../services/users-service";
 export async function signUp(req: Request, res: Response) {
   const { email, password } = req.body;
 
-  console.log(email, password);
-
   try {
     const user = await userService.createUser({ email, password });
     return res.status(httpStatus.CREATED).json({
