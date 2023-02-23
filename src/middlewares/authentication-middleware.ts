@@ -1,12 +1,9 @@
-import { verify } from "crypto";
 import { Response, Request, NextFunction } from "express";
 import httpStatus from "http-status";
 import * as jwt from "jsonwebtoken";
-import prisma from "../config/database";
-import { unauthorizedError } from "../errors/unauthorized-error";
 
 type TokenPayload = {
-  id: string;
+  userId: string;
   iat: number;
   exp: number;
 };
@@ -27,11 +24,11 @@ export function authenticateToken(
   const [, token] = authorization.split(" ");
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET ?? "");
+    const decoded = jwt.verify(token, `${process.env.JWT_SECRET}`);
 
-    const { id } = decoded as TokenPayload;
+    const { userId } = decoded as TokenPayload;
 
-    req.userId = id;
+    req.userId = userId;
 
     return next();
   } catch (error) {

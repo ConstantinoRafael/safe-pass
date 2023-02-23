@@ -1,7 +1,6 @@
 import { User } from "@prisma/client";
 import bcrypt from "bcrypt";
-import userRepository from "../../repositories/user-respository";
-import { duplicatedEmailError } from "./errors";
+import userRepository from "../../repositories/user-respository/index.js";
 
 export async function createUser({
   email,
@@ -18,7 +17,7 @@ export async function createUser({
 async function validateUniqueEmailOrFail(email: string) {
   const userWithSameEmail = await userRepository.findByEmail(email);
   if (userWithSameEmail) {
-    throw duplicatedEmailError();
+    throw { message: "There is already an user with given email" };
   }
 }
 
@@ -28,5 +27,4 @@ const userService = {
   createUser,
 };
 
-export * from "./errors";
 export default userService;

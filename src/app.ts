@@ -1,9 +1,9 @@
 import express, { Request, Response } from "express";
 import "express-async-errors";
-import { authenticationRouter } from "./routers/authentication-router";
-import credentialsRouter from "./routers/credentials-routes";
-import networksRouter from "./routers/networks-router";
-import { usersRouter } from "./routers/users-router";
+import { authenticationRouter } from "./routers/authentication-router.js";
+import credentialsRouter from "./routers/credentials-routes.js";
+import networksRouter from "./routers/networks-router.js";
+import { usersRouter } from "./routers/users-router.js";
 
 const app = express();
 app.use(express.json());

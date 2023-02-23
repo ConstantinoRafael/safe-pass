@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import httpStatus from "http-status";
-import userService from "../services/users-service";
+import userService from "../services/users-service/index.js";
 
 export async function signUp(req: Request, res: Response) {
   const { email, password } = req.body;
@@ -13,9 +13,9 @@ export async function signUp(req: Request, res: Response) {
     });
   } catch (error) {
     console.log(error);
-    // if (error.name === "DuplicatedEmailError") {
-    //   return res.status(httpStatus.CONFLICT).send(error);
-    // }
+    if (error.message === "There is already an user with given email") {
+      return res.status(httpStatus.CONFLICT).send(error);
+    }
     return res.status(httpStatus.BAD_REQUEST).send(error);
   }
 }
