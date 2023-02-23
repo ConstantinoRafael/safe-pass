@@ -39,8 +39,6 @@ async function createCredential({
 
   const cryptrPassword = await cryptr.encrypt(password);
 
-  console.log(cryptrPassword);
-
   return credentialsRepository.createCredential({
     userId,
     title,
