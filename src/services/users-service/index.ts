@@ -1,6 +1,6 @@
 import { User } from "@prisma/client";
 import bcrypt from "bcrypt";
-import userRepository from "../../repositories/user-respository/index.js";
+import userRepository from "../../repositories/user-respository/index";
 
 export async function createUser({
   email,

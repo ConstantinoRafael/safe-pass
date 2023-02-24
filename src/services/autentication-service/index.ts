@@ -1,9 +1,9 @@
-import userRepository from "../../repositories/user-respository/index.js";
+import userRepository from "../../repositories/user-respository/index";
 import { User } from "@prisma/client";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { exclude } from "../../utils/prisma-util.js";
-import sessionRepository from "../../repositories/session-repository/index.js";
+import { exclude } from "../../utils/prisma-util";
+import sessionRepository from "../../repositories/session-repository/index";
 
 async function signIn(params: SignInParams): Promise<SignInResult> {
   const { email, password } = params;

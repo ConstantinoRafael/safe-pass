@@ -4,8 +4,8 @@ import {
   deleteNetwork,
   getNetworks,
   getSpecificNetwork,
-} from "../controllers/networks-controller.js";
-import { authenticateToken } from "../middlewares/authentication-middleware.js";
+} from "../controllers/networks-controller";
+import { authenticateToken } from "../middlewares/authentication-middleware";
 
 const networksRouter = Router();
 

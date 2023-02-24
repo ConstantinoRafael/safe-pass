@@ -4,8 +4,8 @@ import {
   deleteCredential,
   getCredentials,
   getSpecificCredential,
-} from "../controllers/credentials-controller.js";
-import { authenticateToken } from "../middlewares/authentication-middleware.js";
+} from "../controllers/credentials-controller";
+import { authenticateToken } from "../middlewares/authentication-middleware";
 
 const credentialsRouter = Router();
 

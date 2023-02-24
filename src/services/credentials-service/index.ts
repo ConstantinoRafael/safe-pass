@@ -1,5 +1,5 @@
-import credentialsRepository from "../../repositories/credential-repository/index.js";
-import { CredentialInput } from "../../repositories/credential-repository/index.js";
+import credentialsRepository from "../../repositories/credential-repository/index";
+import { CredentialInput } from "../../repositories/credential-repository/index";
 import Cryptr from "cryptr";
 
 const cryptr = new Cryptr("safe");

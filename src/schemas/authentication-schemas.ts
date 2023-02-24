@@ -1,4 +1,4 @@
-import { SignInParams } from "../services/autentication-service/index.js";
+import { SignInParams } from "../services/autentication-service/index";
 import joi from "joi";
 
 export const signInSchema = joi.object<SignInParams>({

@@ -1,4 +1,4 @@
-import prisma from "../../config/database.js";
+import prisma from "../../config/database";
 import { Credential } from "@prisma/client";
 import { Prisma } from "@prisma/client";
 

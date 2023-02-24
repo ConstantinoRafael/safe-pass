@@ -1,4 +1,4 @@
-import { CreateCredentialParams } from "../services/credentials-service/index.js";
+import { CreateCredentialParams } from "../services/credentials-service/index";
 import joi from "joi";
 
 export const credentialSchema = joi.object<CreateCredentialParams>({

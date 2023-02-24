@@ -1,4 +1,4 @@
-import prisma from "../../config/database.js";
+import prisma from "../../config/database";
 import { Prisma } from "@prisma/client";
 
 async function getNetworks(userId: number) {

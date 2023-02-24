@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import httpStatus from "http-status";
 import "express-async-errors";
-import credentialsService from "../services/credentials-service/index.js";
+import credentialsService from "../services/credentials-service/index";
 
 export async function getCredentials(req: Request, res: Response) {
   const userId = parseInt(req.userId);

@@ -1,6 +1,7 @@
 import { Response, Request, NextFunction } from "express";
 import httpStatus from "http-status";
 import * as jwt from "jsonwebtoken";
+import prisma from "../config/database";
 
 type TokenPayload = {
   userId: string;
@@ -8,7 +9,7 @@ type TokenPayload = {
   exp: number;
 };
 
-export function authenticateToken(
+export async function authenticateToken(
   req: Request,
   res: Response,
   next: NextFunction
@@ -27,6 +28,18 @@ export function authenticateToken(
     const decoded = jwt.verify(token, `${process.env.JWT_SECRET}`);
 
     const { userId } = decoded as TokenPayload;
+
+    const session = await prisma.session.findFirst({
+      where: {
+        token,
+      },
+    });
+
+    if (!session) {
+      return res
+      .status(httpStatus.UNAUTHORIZED)
+      .json({ error: "Token invalid! No session" });
+    }
 
     req.userId = userId;
 

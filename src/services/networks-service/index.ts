@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client";
 import Cryptr from "cryptr";
-import networksRepository from "../../repositories/network-repository/index.js";
+import networksRepository from "../../repositories/network-repository/index";
 
 const cryptr = new Cryptr("safe password");
 

@@ -1,9 +1,12 @@
 import express, { Request, Response } from "express";
 import "express-async-errors";
-import { authenticationRouter } from "./routers/authentication-router.js";
-import credentialsRouter from "./routers/credentials-routes.js";
-import networksRouter from "./routers/networks-router.js";
-import { usersRouter } from "./routers/users-router.js";
+import { authenticationRouter } from "./routers/authentication-router";
+import credentialsRouter from "./routers/credentials-routes";
+import networksRouter from "./routers/networks-router";
+import { usersRouter } from "./routers/users-router";
+import { loadEnv } from "./config/envs";
+
+loadEnv();
 
 const app = express();
 app.use(express.json());
@@ -18,5 +21,7 @@ const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`Server is up and running on port ${port} 🚀`);
 });
+
+
 
 export default app;

@@ -1,5 +1,5 @@
 import { Prisma } from "@prisma/client";
-import prisma from "../../config/database.js";
+import prisma from "../../config/database";
 
 async function findByEmail(email: string, select?: Prisma.UserSelect) {
   return prisma.user.findUnique({

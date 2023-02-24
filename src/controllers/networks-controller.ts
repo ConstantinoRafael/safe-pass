@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import httpStatus from "http-status";
-import netwoksService from "../services/networks-service/index.js";
+import netwoksService from "../services/networks-service/index";
 
 export async function getNetworks(req: Request, res: Response) {
   const userId = parseInt(req.userId);
@@ -46,6 +46,7 @@ export async function createNetwork(req: Request, res: Response) {
 
     return res.status(httpStatus.OK).send(networkCreated);
   } catch (error) {
+    console.log(error);
     return res.sendStatus(500);
   }
 }
