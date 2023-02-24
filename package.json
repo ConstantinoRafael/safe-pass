@@ -5,7 +5,8 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon --exec ts-node --files src/app.ts"
+    "dev": "nodemon --exec ts-node --files src/app.ts",
+    "test": "dotenv -e .env.test jest"
   },
   "keywords": [],
   "author": "",

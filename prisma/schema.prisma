@@ -34,7 +34,7 @@ model Session {
 model Credential {
   id       Int    @id @default(autoincrement())
   user     User   @relation(fields: [userId], references: [id])
-  title    String
+  title    String 
   url      String
   username String
   password String

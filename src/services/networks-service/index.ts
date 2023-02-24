@@ -6,6 +6,9 @@ const cryptr = new Cryptr("safe password");
 
 async function getNetworks(userId: number) {
   const networks = await networksRepository.getNetworks(userId);
+
+  networks.map(async (n) => (n.password = await cryptr.decrypt(n.password)));
+
   return networks;
 }
 
@@ -15,6 +18,10 @@ async function getSpecificNetwork(id: number, userId: number) {
   if (!network) {
     throw { message: "not_found" };
   }
+
+  const decryptrPassword = await cryptr.decrypt(network.password);
+
+  network.password = decryptrPassword;
 
   return network;
 }

@@ -13,7 +13,7 @@ app.use("/users", usersRouter);
 app.use("/auth", authenticationRouter);
 app.use("/credentials", credentialsRouter);
 app.use("/networks", networksRouter);
-
+app.all("*", (_req: Request, res: Response) => res.send("No request to this route"))
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`Server is up and running on port ${port} 🚀`);
