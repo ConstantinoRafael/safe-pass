@@ -10,7 +10,6 @@ export async function getNetworks(req: Request, res: Response) {
 
     return res.status(httpStatus.OK).send(networks);
   } catch (error) {
-    console.log(error);
     return res.sendStatus(500);
   }
 }
@@ -24,7 +23,6 @@ export async function getSpecificNetwork(req: Request, res: Response) {
 
     return res.status(httpStatus.OK).send(network);
   } catch (error) {
-    console.log(error);
     if (error.message === "not_found") {
       return res.sendStatus(httpStatus.NOT_FOUND);
     }
@@ -46,7 +44,6 @@ export async function createNetwork(req: Request, res: Response) {
 
     return res.status(httpStatus.OK).send(networkCreated);
   } catch (error) {
-    console.log(error);
     return res.sendStatus(500);
   }
 }

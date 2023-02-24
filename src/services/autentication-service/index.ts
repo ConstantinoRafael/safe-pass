@@ -20,13 +20,9 @@ async function signIn(params: SignInParams): Promise<SignInResult> {
   };
 }
 
-async function getUserOrFail(email: string): Promise<GetUserOrFailResult> {
-  const user = await userRepository.findByEmail(email, {
-    id: true,
-    email: true,
-    password: true,
-  });
-  if (!user) throw { message: "Email or password incorrect" };
+async function getUserOrFail(email: string) {
+  const user = await userRepository.findByEmail(email);
+  if (!user) throw { message: "Email or password incorrect 1" };
 
   return user;
 }
@@ -43,7 +39,7 @@ async function createSession(userId: number) {
 
 async function validatePasswordOrFail(password: string, userPassword: string) {
   const isPasswordValid = await bcrypt.compare(password, userPassword);
-  if (!isPasswordValid) throw { message: "Email or password incorrect" };
+  if (!isPasswordValid) throw { message: "Email or password incorrect 2" };
 }
 
 export type SignInParams = Pick<User, "email" | "password">;

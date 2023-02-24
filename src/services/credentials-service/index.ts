@@ -7,7 +7,7 @@ const cryptr = new Cryptr("safe");
 async function getCredentials(userId: number) {
   const credentials = await credentialsRepository.getCredentials(userId);
 
-  credentials.map(async (c) => (c.password = await cryptr.decrypt(c.password)));
+  //credentials.map(async (c) => (c.password = await cryptr.decrypt(c.password)));
 
   return credentials;
 }
@@ -22,9 +22,9 @@ async function getSpecificCredential(id: number, userId: number) {
     throw { message: "not_found" };
   }
 
-  const decryptrPassword = await cryptr.decrypt(credential.password);
+  //const decryptrPassword = await cryptr.decrypt(credential.password);
 
-  credential.password = decryptrPassword;
+  //credential.password = decryptrPassword;
 
   return credential;
 }

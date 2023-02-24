@@ -16,7 +16,7 @@ app.use("/users", usersRouter);
 app.use("/auth", authenticationRouter);
 app.use("/credentials", credentialsRouter);
 app.use("/networks", networksRouter);
-//app.all("*", (_req: Request, res: Response) => res.send("No request to this route"))
+app.all("*", (_req: Request, res: Response) => res.send("No request to this route"))
 
 
 export default app;

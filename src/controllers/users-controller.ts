@@ -12,7 +12,7 @@ export async function signUp(req: Request, res: Response) {
       email: user.email,
     });
   } catch (error) {
-    console.log(error);
+     (error);
     if (error.message === "There is already an user with given email") {
       return res.status(httpStatus.CONFLICT).send(error);
     }

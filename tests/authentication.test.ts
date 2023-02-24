@@ -11,7 +11,6 @@ beforeEach(async () => await cleanDB());
 const server = supertest(app);
 
 describe("POST /auth/sign-in", () => {
-    
   it("should respond with status 400 when body is not given", async () => {
     const response = await server.post("/auth/sign-in");
 
@@ -29,7 +28,7 @@ describe("POST /auth/sign-in", () => {
   describe("when body is valid", () => {
     const generateValidBody = () => ({
       email: faker.internet.email(),
-      password: faker.internet.password(6),
+      password: faker.internet.password(10),
     });
 
     it("should respond with status 401 if there is no user for given email", async () => {
@@ -56,7 +55,7 @@ describe("POST /auth/sign-in", () => {
       it("should respond with status 200", async () => {
         const body = generateValidBody();
         await createUser(body);
-
+          
         const response = await server.post("/auth/sign-in").send(body);
 
         expect(response.status).toBe(httpStatus.OK);
@@ -67,6 +66,8 @@ describe("POST /auth/sign-in", () => {
         const user = await createUser(body);
 
         const response = await server.post("/auth/sign-in").send(body);
+
+        console.log(response.body);
 
         expect(response.body.user).toEqual({
           id: user.id,
@@ -80,6 +81,7 @@ describe("POST /auth/sign-in", () => {
 
         const response = await server.post("/auth/sign-in").send(body);
 
+        
         expect(response.body.token).toBeDefined();
       });
     });

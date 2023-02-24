@@ -11,7 +11,6 @@ export async function getCredentials(req: Request, res: Response) {
 
     return res.status(httpStatus.OK).send(credentials);
   } catch (error) {
-    console.log(error);
     return res.sendStatus(500);
   }
 }
@@ -27,7 +26,6 @@ export async function getSpecificCredential(req: Request, res: Response) {
 
     return res.status(httpStatus.OK).send(credential);
   } catch (error) {
-    console.log(error);
     if (error.message === "not_found") {
       return res.sendStatus(httpStatus.NOT_FOUND);
     }
@@ -50,7 +48,6 @@ export async function createCredential(req: Request, res: Response) {
 
     return res.status(httpStatus.OK).send(credential);
   } catch (error) {
-    console.log(error);
     if (error.message === "conflict") {
       return res.sendStatus(httpStatus.CONFLICT);
     }

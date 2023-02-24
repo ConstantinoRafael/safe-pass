@@ -38,7 +38,7 @@ describe("POST /users", () => {
       const response = await server.post("/users").send(body);
 
       expect(response.status).toBe(httpStatus.CONFLICT);
-    })
+    });
 
     it("should respond with status 201 and create user when given email is unique", async () => {
       const body = generateValidBody();
@@ -64,10 +64,8 @@ describe("POST /users", () => {
         expect.objectContaining({
           id: response.body.id,
           email: body.email,
-        }),
+        })
       );
     });
-  })
-
-
+  });
 });
