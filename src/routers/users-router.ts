@@ -5,6 +5,6 @@ import { createUserSchema } from "../schemas/users-schemas";
 
 const usersRouter = Router();
 
-usersRouter.post("/", validateBody(createUserSchema), signUp);
+usersRouter.post("/", validateBody, signUp);
 
 export { usersRouter };
