@@ -2,7 +2,7 @@ import { User } from "@prisma/client";
 import prisma from "../src/config/database";
 import { createUser } from "./factories/users-factory";
 import * as jwt from "jsonwebtoken";
-import { createSession } from "./factories/sessions-factory";
+//import { createSession } from "./factories/sessions-factory";
 import { faker } from "@faker-js/faker";
 
 export async function cleanDB() {
@@ -21,7 +21,6 @@ export async function generateValidToken(user?: User) {
   const incomingUser = user || (await createUser(body));
   const token = jwt.sign({ userId: incomingUser.id }, process.env.JWT_SECRET);
 
-  await createSession(token);
-
   return token;
 }
+

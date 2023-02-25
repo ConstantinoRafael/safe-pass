@@ -55,7 +55,7 @@ describe("POST /auth/sign-in", () => {
       it("should respond with status 200", async () => {
         const body = generateValidBody();
         await createUser(body);
-          
+
         const response = await server.post("/auth/sign-in").send(body);
 
         expect(response.status).toBe(httpStatus.OK);
@@ -66,8 +66,6 @@ describe("POST /auth/sign-in", () => {
         const user = await createUser(body);
 
         const response = await server.post("/auth/sign-in").send(body);
-
-        console.log(response.body);
 
         expect(response.body.user).toEqual({
           id: user.id,
@@ -81,7 +79,6 @@ describe("POST /auth/sign-in", () => {
 
         const response = await server.post("/auth/sign-in").send(body);
 
-        
         expect(response.body.token).toBeDefined();
       });
     });

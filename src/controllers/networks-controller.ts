@@ -32,6 +32,7 @@ export async function getSpecificNetwork(req: Request, res: Response) {
 
 export async function createNetwork(req: Request, res: Response) {
   const userId = Number(req.userId);
+
   const { title, network, password } = req.body;
 
   try {
@@ -44,6 +45,7 @@ export async function createNetwork(req: Request, res: Response) {
 
     return res.status(httpStatus.OK).send(networkCreated);
   } catch (error) {
+    console.log(error);
     return res.sendStatus(500);
   }
 }

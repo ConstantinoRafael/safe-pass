@@ -1,6 +1,7 @@
 import credentialsRepository from "../../repositories/credential-repository/index";
 import { CredentialInput } from "../../repositories/credential-repository/index";
 import Cryptr from "cryptr";
+import { Prisma } from "@prisma/client";
 
 const cryptr = new Cryptr("safe");
 
@@ -35,7 +36,7 @@ async function createCredential({
   url,
   password,
   username,
-}: CreateCredentialParams) {
+}: Prisma.CredentialUncheckedCreateInput) {
   const credentialTitleExists =
     await credentialsRepository.getCredentialByTitleAndUserId(title, userId);
 

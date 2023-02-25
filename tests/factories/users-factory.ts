@@ -6,7 +6,7 @@ import prisma from "../../src/config/database";
 export async function createUser({ email, password }) {
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  return prisma.user.create({
+  return await prisma.user.create({
     data: {
       email,
       password: hashedPassword,

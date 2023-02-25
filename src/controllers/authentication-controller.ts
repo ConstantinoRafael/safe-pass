@@ -12,7 +12,7 @@ export async function signInPost(req: Request, res: Response) {
 
     return res.status(200).send(result);
   } catch (error) {
-      (error.message)
+      console.log(error)
     return res.status(httpStatus.UNAUTHORIZED).send({});
   }
 }

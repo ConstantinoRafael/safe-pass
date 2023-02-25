@@ -28,6 +28,7 @@ model Session {
   user   User   @relation(fields: [userId], references: [id])
   token  String
 
+
   @@map("sessions")
 }
 

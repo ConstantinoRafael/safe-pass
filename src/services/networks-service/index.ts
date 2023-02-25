@@ -31,7 +31,7 @@ async function createNetwork({
   title,
   network,
   password,
-}: CreateNetworkParams) {
+}: Prisma.NetworkUncheckedCreateInput) {
   const cryptrPassword = await cryptr.encrypt(password);
 
   return networksRepository.createNetwork({
@@ -52,12 +52,12 @@ async function deleteNetwork(id: number, userId: number) {
   return networksRepository.deleteNetwork(id, userId);
 }
 
-type CreateNetworkParams = {
-  userId: number;
-  title: string;
-  network: string;
-  password: string;
-};
+// type CreateNetworkParams = {
+//   userId: number;
+//   title: string;
+//   network: string;
+//   password: string;
+// };
 
 const netwoksService = {
   createNetwork,

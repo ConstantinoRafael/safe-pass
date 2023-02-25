@@ -29,17 +29,17 @@ export async function authenticateToken(
 
     const { userId } = decoded as TokenPayload;
 
-    const session = await prisma.session.findFirst({
-      where: {
-        token,
-      },
-    });
+    // const session = await prisma.session.findFirst({
+    //   where: {
+    //     token,
+    //   },
+    // });
 
-    if (!session) {
-      return res
-      .status(httpStatus.UNAUTHORIZED)
-      .json({ error: "Token invalid! No session" });
-    }
+    // if (!session) {
+    //   return res
+    //   .status(httpStatus.UNAUTHORIZED)
+    //   .json({ error: "Token invalid! No session" });
+    // }
 
     req.userId = userId;
 

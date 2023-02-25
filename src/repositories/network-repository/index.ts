@@ -18,7 +18,7 @@ async function getSpecificNetwork(id: number, userId: number) {
   });
 }
 
-async function createNetwork(data: CreateNetworkParams) {
+async function createNetwork(data: Prisma.NetworkUncheckedCreateInput) {
   return prisma.network.create({
     data,
   });
@@ -31,13 +31,6 @@ async function deleteNetwork(id: number, userId: number) {
     },
   });
 }
-
-type CreateNetworkParams = {
-  userId: number;
-  title: string;
-  network: string;
-  password: string;
-};
 
 const networksRepository = {
   createNetwork,

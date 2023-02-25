@@ -1,14 +1,12 @@
 import { faker } from "@faker-js/faker";
 import prisma from "../../src/config/database";
+import { Prisma, Credential } from "@prisma/client";
 
-export async function createCredential(userId: number) {
+export async function createCredential(data: CredentialInput) {
+
   return await prisma.credential.create({
-    data: {
-      userId: userId,
-      title: faker.datatype.string(),
-      url: faker.datatype.string(),
-      password: faker.datatype.string(),
-      username: faker.datatype.string(),
-    },
+    data,
   });
 }
+
+export type CredentialInput = Omit<Credential, "id">;

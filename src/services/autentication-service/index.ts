@@ -8,11 +8,24 @@ import sessionRepository from "../../repositories/session-repository/index";
 async function signIn(params: SignInParams): Promise<SignInResult> {
   const { email, password } = params;
 
-  const user = await getUserOrFail(email);
+  const user = await userRepository.findByEmail(email);
+  if (!user) {
+    throw { message: "user not found" };
+  }
 
-  await validatePasswordOrFail(password, user.password);
+  const userId = user.id;
 
-  const token = await createSession(user.id);
+  const isPasswordValid = await bcrypt.compare(password, user.password);
+
+  if (!isPasswordValid) throw { message: "Email or password incorrect" };
+
+  const token = jwt.sign({ userId }, `${process.env.JWT_SECRET}`);
+
+  // const user = await getUserOrFail(email);
+
+  // await validatePasswordOrFail(password, user.password);
+
+  // const token = await createSession(user.id);
 
   return {
     user: exclude(user, "password"),
@@ -20,27 +33,28 @@ async function signIn(params: SignInParams): Promise<SignInResult> {
   };
 }
 
-async function getUserOrFail(email: string) {
-  const user = await userRepository.findByEmail(email);
-  if (!user) throw { message: "Email or password incorrect 1" };
+// async function getUserOrFail(email: string) {
+//   const user = await userRepository.findByEmail(email);
+//   if (!user) throw { message: "Email or password incorrect 1" };
 
-  return user;
-}
+//   return user;
+// }
 
-async function createSession(userId: number) {
-  const token = jwt.sign({ userId }, `${process.env.JWT_SECRET}`);
-  await sessionRepository.create({
-    token,
-    userId,
-  });
+// async function createSession(userId: number) {
+//   const token = jwt.sign({ userId }, `${process.env.JWT_SECRET}`);
+//   await sessionRepository.create({
+//     token,
+//     userId,
+//   });
 
-  return token;
-}
+//   return token;
+// }
 
-async function validatePasswordOrFail(password: string, userPassword: string) {
-  const isPasswordValid = await bcrypt.compare(password, userPassword);
-  if (!isPasswordValid) throw { message: "Email or password incorrect 2" };
-}
+// async function validatePasswordOrFail(password: string, userPassword: string) {
+//   const isPasswordValid = await bcrypt.compare(password, userPassword);
+
+//   if (!isPasswordValid) throw { message: "Email or password incorrect 2" };
+// }
 
 export type SignInParams = Pick<User, "email" | "password">;
 
@@ -49,7 +63,7 @@ type SignInResult = {
   token: string;
 };
 
-type GetUserOrFailResult = Pick<User, "id" | "email" | "password">;
+// type GetUserOrFailResult = Pick<User, "id" | "email" | "password">;
 
 const authenticationService = {
   signIn,
